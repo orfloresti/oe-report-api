@@ -1,7 +1,7 @@
 import { activity } from "../interfaces/activity.interface";
 
 /**
- * Formart input: 'aaaa-mm-dd'  output: 'mmddaaaa'
+ * Format input: 'aaaa-mm-dd'  output: 'mmddaaaa'
  * @param dates: string[]
  */
 export const changeDateFormat = (dates: string[]) => {
@@ -9,6 +9,14 @@ export const changeDateFormat = (dates: string[]) => {
     (date) =>
       `${date[5]}${date[6]}${date[8]}${date[9]}${date[0]}${date[1]}${date[2]}${date[3]}`
   );
+};
+
+/**
+ * Format input: 'mmddaaaa'  output: 'aaaa-mm-dd'
+ * @param date: string
+ */
+export const dateOpenEnglishToIsoFormat = (date: string) => {
+  return `${date[4]}${date[5]}${date[6]}${date[7]}-${date[0]}${date[1]}-${date[2]}${date[3]}`;
 };
 
 /**

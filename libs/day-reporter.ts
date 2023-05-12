@@ -1,6 +1,7 @@
 import { activity } from "../interfaces/activity.interface";
 import {
   countByType,
+  dateOpenEnglishToIsoFormat,
   getActivityTypes,
   getTotalMins,
 } from "./day-reporter.util";
@@ -16,7 +17,7 @@ export class DayReporter {
     this.data = data;
 
     // Get data date
-    this.report["date"] = date;
+    this.report["date"] = dateOpenEnglishToIsoFormat(date);
 
     // Get total minuts
     this.report["mins"] = getTotalMins(this.data);
