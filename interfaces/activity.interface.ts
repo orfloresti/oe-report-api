@@ -3,16 +3,16 @@ export interface activity {
   courseId: number;
   courseType: string;
   courseTitle: string;
-  courseDesc: string | null;
-  teacherDisplayName: string | null;
-  assessmentResult: string | null;
+  courseDesc?: string;
+  teacherDisplayName?: string;
+  assessmentResult?: string;
   dateStarted: number;
   dateCompleted: number;
-  sourceId: number | null;
-  mediaData: string | null;
-  noteId: string | null;
-  liveClassRecordingLink: string | null;
-  url: string | null;
-  status: string | null;
-  transcript: string | null;
+  sourceId?: number;
+  mediaData?: string;
+  noteId?: string;
+  liveClassRecordingLink?: string;
+  url?: string;
+  status?: string;
+  transcript?: string;
 }
