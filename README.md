@@ -1,4 +1,4 @@
-# Generate report by day for OpenEnglis
+# Generate report by day for OpenEnglish
 
 ## Get data
 
@@ -8,3 +8,8 @@
 # Run
 
 Execute `npx ts-node .\index.ts`
+
+# TODO
+
+* Add UI.
+* Improve dates to get report
