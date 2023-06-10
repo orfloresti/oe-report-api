@@ -1,4 +1,6 @@
 import { activity } from "../interfaces/activity.interface";
+import { DayReporter } from "./day-reporter";
+import { OpenEnglish } from "./open-english";
 
 /**
  * Format input: 'aaaa-mm-dd'  output: 'mmddaaaa'
@@ -29,6 +31,21 @@ export const getActivityTypes = (data: activity[]): string[] => {
 };
 
 /**
+ * 
+ * @param days 
+ * @returns 
+ */
+export const getActivityTypesSeveralDays = (days: {[key: string]: any }[]): string[] => {
+  let types: string[] = [];
+  days.forEach((day: any) => {
+    types = types.concat(day.types);
+  });
+
+  return [...new Set(types)];
+};
+
+
+/**
  * Function to calculate total minutes worked in current activities list
  * @param data activity[]
  * @returns total minutes of all activities
@@ -55,3 +72,42 @@ export const countByType = (data: activity[]) => {
   });
   return acc;
 };
+
+/**
+ * 
+ * @param dates 
+ * @param personId 
+ * @param cookie 
+ * @returns 
+ */
+export const getReportSeveralDays = async(dates: string[], personId: string, cookie: string) =>{
+  const days: {[key: string]: any }[] = [];
+  for (const date of dates) {
+    const { data } = await OpenEnglish(date, personId, cookie);
+    const report = new DayReporter(data, date);
+    days.push(report.getResult());
+  }
+
+  return days;
+}
+
+/**
+ * 
+ * @param days 
+ * @param types 
+ * @returns 
+ */
+export const getTotalReport = (days: {[key: string]: any }, types: string[]) => {
+  const totalReport: {[key: string]: any} = {};
+  days.forEach((day: {[key: string]: any }) => {
+    Object.keys(day).forEach((key: string) => {
+      if (types.includes(key)) {
+        totalReport[key] = !!totalReport[key]
+          ? totalReport[key] + day[key]
+          : day[key];
+      }
+    });
+  });
+
+  return totalReport;
+}
