@@ -3,7 +3,7 @@ import {
   getReportSeveralDays,
   getTotalReport,
 } from "./day-reporter.util";
-import { getListOfDays } from "./week-reporter.util";
+import { getListOfDays, getWeeksNumber } from "./week-reporter.util";
 // import { cookie, dates, personId } from "../config";
 
 export const weekReport = async (
@@ -14,6 +14,7 @@ export const weekReport = async (
 ) => {
   // Get list of dates
   const dates: string[] = getListOfDays(startDate, endDate);
+  const weeks: string = getWeeksNumber(startDate, endDate);
 
   // Get report for each day
   const days = await getReportSeveralDays(dates, personId, cookie);
@@ -30,6 +31,15 @@ export const weekReport = async (
   // Calculate total hours using minuts and saving in a new prop named hours
   totalReport["hours"] = totalReport["mins"] / 60;
 
+  const {mins, hours, ...activities} = totalReport;
+
   // Show total report
-  return totalReport;
+  return {
+    weeks,
+    time: {
+      mins,
+      hours,
+    },
+    activities
+  }
 };

@@ -1,15 +1,20 @@
-# Generate report by day for OpenEnglish
+# OpEn Report - Backen End
 
-## Get data
+This project is used to generate the report of advance of Open English 
 
-- Filter network by `details?personId`
-- Cookie and data should be set in config
+## POST body
+
+``` ts
+const body = {
+  endDate: string
+  personId: string
+  startDate: string
+  token: string
+}
+```
 
 # Run
 
-Execute `npx ts-node .\index.ts`
+Execute `npm run start`
 
-# TODO
 
-- Add UI.
-- Improve dates to get report
