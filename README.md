@@ -1,11 +1,11 @@
-# OpEn Report - Backen End
+# OE Report - API
 
 This project is used to generate the report of advance of Open English 
 
 ## POST body
 
 ``` ts
-const body = {
+interface body = {
   endDate: string
   personId: string
   startDate: string

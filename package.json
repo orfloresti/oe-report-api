@@ -13,8 +13,8 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.8"
   },
-  "name": "openenglishreport",
-  "description": "OpenEnglih reporter generator",
+  "name": "oereportapi",
+  "description": "OE Report API",
   "version": "0.1.0",
   "main": "index.ts",
   "devDependencies": {
