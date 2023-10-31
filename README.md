@@ -11,5 +11,5 @@ Execute `npx ts-node .\index.ts`
 
 # TODO
 
-* Add UI.
-* Improve dates to get report
+- Add UI.
+- Improve dates to get report

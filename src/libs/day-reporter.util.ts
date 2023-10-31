@@ -31,11 +31,13 @@ export const getActivityTypes = (data: activity[]): string[] => {
 };
 
 /**
- * 
- * @param days 
- * @returns 
+ *
+ * @param days
+ * @returns
  */
-export const getActivityTypesSeveralDays = (days: {[key: string]: any }[]): string[] => {
+export const getActivityTypesSeveralDays = (
+  days: { [key: string]: any }[]
+): string[] => {
   let types: string[] = [];
   days.forEach((day: any) => {
     types = types.concat(day.types);
@@ -43,7 +45,6 @@ export const getActivityTypesSeveralDays = (days: {[key: string]: any }[]): stri
 
   return [...new Set(types)];
 };
-
 
 /**
  * Function to calculate total minutes worked in current activities list
@@ -74,14 +75,18 @@ export const countByType = (data: activity[]) => {
 };
 
 /**
- * 
- * @param dates 
- * @param personId 
- * @param cookie 
- * @returns 
+ *
+ * @param dates
+ * @param personId
+ * @param cookie
+ * @returns
  */
-export const getReportSeveralDays = async(dates: string[], personId: string, cookie: string) =>{
-  const days: {[key: string]: any }[] = [];
+export const getReportSeveralDays = async (
+  dates: string[],
+  personId: string,
+  cookie: string
+) => {
+  const days: { [key: string]: any }[] = [];
   for (const date of dates) {
     const { data } = await OpenEnglish(date, personId, cookie);
     const report = new DayReporter(data, date);
@@ -89,17 +94,20 @@ export const getReportSeveralDays = async(dates: string[], personId: string, coo
   }
 
   return days;
-}
+};
 
 /**
- * 
- * @param days 
- * @param types 
- * @returns 
+ *
+ * @param days
+ * @param types
+ * @returns
  */
-export const getTotalReport = (days: {[key: string]: any }, types: string[]) => {
-  const totalReport: {[key: string]: any} = {};
-  days.forEach((day: {[key: string]: any }) => {
+export const getTotalReport = (
+  days: { [key: string]: any },
+  types: string[]
+) => {
+  const totalReport: { [key: string]: any } = {};
+  days.forEach((day: { [key: string]: any }) => {
     Object.keys(day).forEach((key: string) => {
       if (types.includes(key)) {
         totalReport[key] = !!totalReport[key]
@@ -110,4 +118,4 @@ export const getTotalReport = (days: {[key: string]: any }, types: string[]) => 
   });
 
   return totalReport;
-}
+};
